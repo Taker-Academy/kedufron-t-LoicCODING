@@ -262,6 +262,37 @@ body {
     object-fit: cover;
 }
 
+.package-color-pay {
+    color: #fff;
+    text-decoration: none;
+}
+
+.packages-btn {
+    padding: 7px 15px;
+    background: #AA8C64;
+    border: 2px solid #AA8C64;
+    font-size: min(max(7px, 3vw), 14px);
+    border-radius: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    margin-top: 7px;
+    transition: 0.3s;
+}
+
+.packages-btn:hover {
+    background: transparent;
+    color: #AA8C64;
+    transition: 0.3s;
+}
+
+.packages-btn a {
+    text-decoration: none;
+    color: #f1f1f1;
+    transition: ease .2s;
+}
+
+.packages-btn a:hover {
+    color: #d0d0d0;
+}
 footer {
     position: relative;
     width: 100%;
