@@ -1,0 +1,139 @@
+footer {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 50px 100px;
+    background: #1b1b1b;
+}
+
+footer .container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-gap: 20px;
+}
+
+.sec h2 {
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 15px;
+    user-select: none;
+}
+
+.sec h2:before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #aa8c64;
+}
+
+.sec p {
+    color: #f7f7f7;
+    font-size: min(max(10px, 3vw), 14px);
+}
+
+.sci {
+    margin-top: 20px;
+    display: flex;
+    grid-gap: 10px;
+    flex-wrap: wrap;
+}
+
+.sci li {
+    list-style: none;
+}
+
+.sci li a {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background: #aa8c64;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 50px;
+    color: #f1f1f1;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.sci li a:hover {
+    transform: scale(0.9);
+    background-color: #c5aa86d6;
+}
+
+.sci li a .fa {
+    color: #fff;
+    font-size: 20px;
+}
+
+.sci li a {
+    text-shadow: 1px 1px 2px #0000007d;
+}
+
+.sec.quicklinks {
+    position: relative;
+    user-select: none;
+}
+
+.sec.quicklinks ul li {
+    list-style: none;
+}
+
+.sec.quicklinks ul li a {
+    color: #f7f7f7;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+    transition: transform .3s ease;
+}
+
+.sec.quicklinks ul li a:hover {
+    transform: translateX(5px) scale(1.1);
+}
+
+.sec.contact .info {
+    position: relative;
+}
+
+.sec.contact .info li {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    margin-bottom: 16px;
+}
+
+.sec.contact .info li span:nth-child(1) {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.sec.contact .info li a {
+    color: #f7f7f7;
+    text-decoration: none;
+}
+
+.copyrightText {
+    width: 100%;
+    user-select: text;
+    padding: 30px 30px;
+    text-align: center;
+    color: #b1b1b1;
+    background-color: #131313;
+    user-select: none;
+}
+
+.copyrightText a {
+    text-decoration: none;
+    color: #a99273;
+}
+
+.copyrightText a:hover {
+    color: #b6a287;
+    text-decoration: underline;
+}

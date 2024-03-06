@@ -3,11 +3,16 @@
 <head>
     <meta charset="utf-8">
     <title>Vitrine Web</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="responsives.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./css/responsives.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/products.css">
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
+    <link rel="stylesheet" type="text/css" href="./css/accueil.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
     <header>
@@ -17,14 +22,14 @@
                     <div id="menu-btn" class="fas fa-bars burger"></div>
                         <img class="image" src="assets/img/logo.png" />
                     <div class="nav-links">
-                        <a href="#" class="nav_button"><i class="fas fa-code"></i>    Accueil</a>
-                        <a href="#" class="nav_button"><i class="fas fa-code"></i>    Produits</a>
+                        <a href="#" class="nav_button active"><i class="fas fa-code"></i>    Accueil</a>
+                        <a href="./pages/panier.html" class="nav_button"><i class="fas fa-code"></i>    Paniers</a>
                         <a href="#" class="nav_button"><i class="fas fa-code"></i>    Contact</a>
                     </div>
                     <div class="nav-search">
                         <div class="box">
-                            <form name="search">
-                                <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
+                            <form name="search" id="searchForm">
+                                <input type="text" class="input" name="txt" id="searchInput" placeholder="Search products..." this.blur();">
                             </form>
                             <i class="fas fa-search"></i>
                         </div>
@@ -49,11 +54,10 @@
         <div id="create_product" class="galerie">
             <div class="all_products">
                 <h1><span id="productCount">0</span> Produits</h1>
+                <h1 id="noResultsMessage" style="display: none;">Aucun produit a été trouvé</h1>
             </div>
         </div>
     </main>
-
-
     <footer>
         <div class="container">
             <div class="sec aboutus">
@@ -96,7 +100,6 @@
         <p>
             Designed by Blanc loic - Developped by Loic & Stéphane
         </p>
-
     </div>
 </body>
 </html>

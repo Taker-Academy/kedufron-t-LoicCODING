@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', function ()
         api: 'https://api.kedufront.juniortaker.com/',
         imgApi: 'https://api.kedufront.juniortaker.com/item/picture/',
         productMain: document.getElementById('create_product'),
-        productCount: document.getElementById('productCount')
+        productCount: document.getElementById('productCount'),
+        searchForm: document.forms.search,
+        totalProductCount: 0,
     };
-
-    function createLink(productId, price)
+    function createLink(productId, name, price)
     {
         const link = document.createElement('a');
         const btnDiv = document.createElement('div');
         const btnP = document.createElement('p');
-
-        link.href = `../package?p=${productId}&s=scripts`;
+        link.href = `kedufron-t-LoicCODING/../pages/products.html?id=${productId}`;
         link.id = `link_${productId}`;
         link.classList.add('package-color-pay');
         btnDiv.className = 'packages-btn';
@@ -56,11 +56,11 @@ document.addEventListener('DOMContentLoaded', function ()
 
     function createProductDiv(product)
     {
-        const productId = `product_${product.id}`;
+        const productId = `product_${product._id}`;
         const productDiv = document.createElement('div');
         const img = createImage(product.image, product.name);
         const contentDiv = createContentDiv(product);
-        const link = createLink(product.id, product.price);
+        const link = createLink(product._id, product.name, product.price);
 
         productDiv.id = productId;
         productDiv.classList.add('packages');
@@ -69,11 +69,50 @@ document.addEventListener('DOMContentLoaded', function ()
         productDiv.appendChild(contentDiv);
         return productDiv;
     }
+    function filterProducts(searchTerm, products) {
+        return products.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    }
+
+    function updateProductList(products) {
+        config.productMain.innerHTML = '';
+
+        if (products.length === 0) {
+            // If no products are found, display a message
+            const noProductMessage = document.createElement('h1');
+            noProductMessage.classList.add('no_packages');
+            // noProductMessage.textContent = "Rien n'a été trouvé.";
+            config.productMain.appendChild(noProductMessage);
+        } else {
+            // Mise à jour du nombre total de produits
+            config.totalProductCount = products.length;
+            config.productCount.textContent = config.totalProductCount;
+
+            products.forEach(product => {
+                const productDiv = createProductDiv(product);
+                config.productMain.appendChild(productDiv);
+            });
+        }
+    }
+    config.searchForm.txt.addEventListener('input', function () {
+        const searchTerm = config.searchForm.txt.value.trim();
+
+        axios.get(config.api + 'item/')
+            .then(function (response) {
+                const allProducts = response.data;
+                const filteredProducts = filterProducts(searchTerm, allProducts);
+                updateProductList(filteredProducts);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    });
 
     axios.get(config.api + 'item/')
         .then(function (response) {
             const products = response.data;
-            config.productCount.textContent = products.length;
+            config.totalProductCount = products.length;
+            config.productCount.textContent = config.totalProductCount;
+
             products.forEach(product => {
                 const productDiv = createProductDiv(product);
                 config.productMain.appendChild(productDiv);
