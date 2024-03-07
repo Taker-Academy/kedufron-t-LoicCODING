@@ -8,47 +8,44 @@ document.addEventListener("DOMContentLoaded", function () {
         if (noProdPanierElement) {
             noProdPanierElement.style.display = 'none';
             productInPanier.style.display = 'block';
-            displayPanierAll();
+            displayPanierAll(panierFromLocalStorage);
         }
     } else if (noProdPanierElement) {
         noProdPanierElement.style.display = 'block';
         productInPanier.style.display = 'none';
     }
-});
-function displayPanierAll() {
+});function displayPanierAll(products) {
     const productPanierDiv = document.getElementById('productInPanier');
+    productPanierDiv.innerHTML = ''; // Efface le contenu précédent
 
-    const panierHTML = `
-        <div class="container_panier">
-            <div class="produit">
-                <div class="prod_img">
-                    <img class="test" src="../assets/img/voiture.png" />
-                </div>
-                <div class="prod_title"><p>KAngourouu</p></div>
-                <div class="prod_title"><p>Prix: 198.0$</p></div>
-                <div class="prod_quantity">
-                    <p class="title_quantity_prod" >Quantité</p>
-                    <input type="number" ng-model="cart.quantity" value="{{ cart.quantity}}" min=1 max=5 placeholder="1" class="form-control" />
-                </div>
-                <div class="delete_prod">
+    const containerPanierDiv = document.createElement('div');
+    containerPanierDiv.classList.add('container_panier');
+
+    products.forEach(product => {
+        const produitDiv = document.createElement('div');
+        produitDiv.classList.add('produit');
+
+        produitDiv.innerHTML = `
+            <div class="prod_img">
+                <img class="test" src="https://api.kedufront.juniortaker.com/item/picture/${product.image}" alt="${product.name}" />
+            </div>
+            <div class="prod_title">
+                <p>${product.name}</p>
+            </div>
+            <div class="prod_title">
+                <p class="prod_price">${product.price} $</p>
+            </div>
+            <div class="prod_quantity">
+                <p class="title_quantity_prod">Quantité</p>
+                <input type="number" value="${product.quantity}" min="1" max="5" class="form-control" placeholder="1" />
+            </div>
+            <div class="delete_prod">
                 <button type="button" class="btn-danger"><i class="fa fa-trash fa-2x"></i></button>
-             </div>
-             </div>
-            <div class="produit">
-             <div class="prod_img">
-                 <img class="test" src="../assets/img/voiture.png" />
-             </div>
-             <div class="prod_title"><p>Titre</p></div>
-             <div class="prod_title"><p>Prix: 198.0$</p></div>
-             <div class="prod_quantity">
-                <p class="title_quantity_prod" >Quantité</p>
-                <input type="number" value="{{ cart.quantity}}" min=1 max=5 class="form-control" placeholder="1" />
-             </div>
-             <div class="delete_prod">
-                <button type="button" class="btn-danger"><i class="fa fa-trash fa-2x"></i></button>
-             </div>
-          </div>
-        </div>
-    `
-    productPanierDiv.innerHTML = panierHTML;
+            </div>
+        `;
+
+        containerPanierDiv.appendChild(produitDiv);
+    });
+
+    productPanierDiv.appendChild(containerPanierDiv);
 }

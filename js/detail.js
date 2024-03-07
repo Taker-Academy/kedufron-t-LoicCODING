@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         id: product.item.id,
                         name: product.item.name,
                         price: product.item.price,
+                        image: product.item.image,
                     });
                     localStorage.setItem('panier', JSON.stringify(panier));
                     alert('Produit ajouté au panier !');
